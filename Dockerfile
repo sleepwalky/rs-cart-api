@@ -1,4 +1,4 @@
-FROM node:12-alpine as base
+FROM mhart/alpine-node:14 as base
 
 WORKDIR /build
 COPY package*.json ./
@@ -6,7 +6,7 @@ RUN npm ci --from-lock-file && npm cache clean --force
 COPY . .
 RUN npm run build && npm prune --production
 
-FROM mhart/alpine-node:slim-15
+FROM mhart/alpine-node:slim-14
 WORKDIR /app
 
 COPY --from=base /build/dist ./dist
