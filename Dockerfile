@@ -6,13 +6,12 @@ RUN npm ci --from-lock-file && npm cache clean --force
 COPY . .
 RUN npm run build && npm prune --production
 
-FROM node:12-alpine
+FROM mhart/alpine-node:slim-15
 WORKDIR /app
 
 COPY --from=base /build/dist ./dist
 COPY --from=base /build/node_modules ./node_modules
 
-USER node
 ENV PORT=8080
 EXPOSE 8080
 
