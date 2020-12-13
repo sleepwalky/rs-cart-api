@@ -1,0 +1,15 @@
+# by obvious reasons
+node_modules/
+
+# we don't need local build files
+dist/
+
+# we don't need git
+.git
+
+# editors
+.vscode
+.idea
+
+# aws....
+.elasticbeanstalk
